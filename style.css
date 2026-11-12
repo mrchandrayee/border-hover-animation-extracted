@@ -1,0 +1,128 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Page layout */
+body {
+  min-height: 100vh;
+  background-color: #050720;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.demo {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+  padding: 24px;
+}
+
+h1 {
+  padding: 9px 16px;
+  border-radius: 7px;
+  background: #8755f6;
+  color: #fff;
+  font-size: clamp(20px, 3vw, 30px);
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Main demo section — based on the visible CodePen snippet */
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 180px;
+}
+
+/* Hover target */
+.hover-button {
+  position: relative;
+  display: inline-block;
+  padding: 8px 15px;
+  color: #fff;
+  background-color: #292929;
+  font-size: 30px;
+  text-decoration: none;
+  isolation: isolate;
+}
+
+/* Vertical border strokes grow from the middle */
+.hover-button::before {
+  position: absolute;
+  content: '';
+  z-index: -1;
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  border: 2px solid transparent;
+  transition: 0.3s all ease-in-out;
+}
+
+/* Horizontal border strokes grow from the middle */
+.hover-button::after {
+  position: absolute;
+  content: '';
+  z-index: -1;
+  width: 100%;
+  height: 0;
+  top: 50%;
+  left: 0;
+  border: 2px solid transparent;
+  transition: 0.3s all ease-in-out;
+}
+
+/* Expand both pseudo-elements on hover */
+.hover-button:hover::before,
+.hover-button:hover::after,
+.hover-button:focus-visible::before,
+.hover-button:focus-visible::after {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Give the pseudo-elements their white edges */
+.hover-button:hover::before,
+.hover-button:focus-visible::before {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+
+.hover-button:hover::after,
+.hover-button:focus-visible::after {
+  border-left-color: #fff;
+  border-right-color: #fff;
+}
+
+.hover-button:focus-visible {
+  outline: 2px solid #a98bff;
+  outline-offset: 6px;
+}
+
+.hint {
+  color: #9294aa;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .hover-button { font-size: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-button::before,
+  .hover-button::after {
+    transition: none;
+  }
+}
